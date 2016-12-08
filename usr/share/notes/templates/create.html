@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block title %}Create{% endblock %}
+
+{% block content %}
+  <form action="" method="post">
+    <textarea name="content" rows="30"></textarea>
+    <br />
+    <input type="submit" value="Create">
+  </form>
+  <hr />
+  <a href="/history"><h4>History</h4></a>
+  <table>
+    {% for note in notes %}
+      <tr>
+        <td>
+          <a href="{{ note.id }}">
+            {{ note.time }}
+            &nbsp;
+            {{ note.content }}
+          </a>
+        </td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

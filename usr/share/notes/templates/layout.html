@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    {% block head %}
+    <title>{% block title %}{% endblock %} - Notes</title>
+    {% endblock %}
+
+    <style>
+      body {
+        font-family: monospace;
+      }
+      tr:hover {
+        background-color: #dddddd;
+      }
+      a {
+        text-decoration: none;
+      }
+      a:link {
+        color: black;
+      }
+      a:visited {
+        color: black;
+      }
+      a:hover {
+        color: black;
+      }
+      a:active {
+        color: black;
+      }
+      textarea {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    {% block content %}{% endblock %}
+  </body>
+</html>
