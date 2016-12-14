@@ -1,25 +1,14 @@
 {% extends "layout.html" %}
-{% block title %}Create{% endblock %}
+{% block title %}{% if note %}Update{% else %}Create{% endif %}{% endblock %}
 
 {% block content %}
   <form action="" method="post">
-    <textarea name="content" rows="30"></textarea>
+    <textarea name="content" rows="30">{% if note %}{{ note.content }}{% endif %}</textarea>
     <br />
-    <input type="submit" value="Create">
+    <input type="submit" value="{% if note %}Update{% else %}Create{% endif %}">
+    {% if note %}&nbsp;<a href="/">Cancel</a>{% endif %}
   </form>
   <hr />
   <a href="/history"><h4>History</h4></a>
-  <table>
-    {% for note in notes %}
-      <tr>
-        <td>
-          <a href="{{ note.id }}">
-            {{ note.time }}
-            &nbsp;
-            {{ note.content }}
-          </a>
-        </td>
-      </tr>
-    {% endfor %}
-  </table>
+  {% include "list.html" %}
 {% endblock %}

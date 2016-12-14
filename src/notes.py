@@ -78,12 +78,34 @@ def create():
         return render_template('create.html', notes=docs)
 
 
-@app.route('/history', methods=['GET'])
-def history():
-    docs = map(lambda n: note_preview(n),
-               notes.find(sort=[('_id', -1)], limit=100))
+@app.route('/edit/<int:id>', methods=['GET', 'POST'])
+def edit(id):
+    doc = notes.find_one({'_id': id})
+    if doc is None:
+        return 'Not found', 404
 
-    return render_template('history.html', notes=docs)
+    if request.method == 'POST':
+        content = request.form['content']
+
+        if len(content.strip()):
+            doc['content'] = content
+            doc['time'] = datetime.utcnow()
+
+            notes.update_one({'_id': doc['_id']}, {'$set': doc})
+
+        return redirect('/' + str(id))
+    else:
+        docs = map(lambda n: note_preview(n),
+                   notes.find(sort=[('_id', -1)], limit=5))
+
+        return render_template('create.html', note=doc, notes=docs)
+
+
+@app.route('/<int:id>', methods=['DELETE'])
+def delete(id):
+    notes.delete_one({'_id': id})
+
+    return ''
 
 
 @app.route('/<int:id>', methods=['GET'])
@@ -97,11 +119,12 @@ def view(id):
     return make_response((note['content'], 200, headers))
 
 
-@app.route('/<int:id>', methods=['DELETE'])
-def delete(id):
-    notes.delete_one({'_id': id})
+@app.route('/history', methods=['GET'])
+def history():
+    docs = map(lambda n: note_preview(n),
+               notes.find(sort=[('_id', -1)], limit=100))
 
-    return ''
+    return render_template('history.html', notes=docs)
 
 
 if __name__ == '__main__':

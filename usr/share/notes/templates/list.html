@@ -1,0 +1,9 @@
+<table>
+  {% for n in notes %}
+    <tr>
+      <td>&nbsp;{{ n.time }}&nbsp;</td>
+      <td>&nbsp;<a href="/{{ n.id }}">{{ n.content }}</a>&nbsp;</td>
+      <td>&nbsp;<a href="/edit/{{ n.id }}">*</a>&nbsp;</td>
+    </tr>
+  {% endfor %}
+</table>
