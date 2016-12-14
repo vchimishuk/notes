@@ -1,0 +1,10 @@
+[Unit]
+Description=Notes daemon
+
+[Service]
+ExecStart=/usr/bin/python3 /usr/lib/notes/notes.py
+User=nobody
+Group=nogroup
+
+[Install]
+WantedBy=multi-user.target

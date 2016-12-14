@@ -1,0 +1,12 @@
+Source: notes
+Section: main
+Priority: optional
+Maintainer: Viacheslav Chimishuk <vchimishuk@yandex.ru>
+Build-Depends: debhelper (>=9)
+Standards-Version: 3.9.4
+Homepage: https://github.com/vchimishuk/notes
+
+Package: notes
+Architecture: all
+Depends: python3, python3-flask, python3-dateutil, python3-pymongo
+Description: Simple pastie-like notes application for local networks

@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+export DH_VERBOSE=1
+
+%:
+	dh $@
+
+override_dh_auto_install:
+	install -g 0 -o 0 -d debian/notes
+	cp -r etc debian/notes
+	cp -r lib debian/notes
+	cp -r usr debian/notes

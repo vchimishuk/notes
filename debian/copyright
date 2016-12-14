@@ -1,0 +1,8 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: notes
+Source: https://github.com/vchimishuk/notes
+
+Files: *
+Copyright: 2016 Viacheslav Chimishuk <vchimishuk@yandex.ru>
+Author: Viacheslav Chimishuk <vchimishuk@yandex.ru>
+License: GPL-3+
