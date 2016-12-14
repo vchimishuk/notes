@@ -1,4 +1,5 @@
 import re
+import logging
 from io import StringIO
 from datetime import datetime
 from dateutil import tz
@@ -11,6 +12,9 @@ from configparser import ConfigParser
 
 CONF_FILE = '/etc/notes.conf'
 TEMPLATE_DIR = '/usr/share/notes/templates'
+
+
+logging.getLogger('werkzeug').setLevel(logging.ERROR)
 
 
 def read_config(path):
@@ -128,4 +132,4 @@ def history():
 
 
 if __name__ == '__main__':
-    app.run(config['http.address'], int(config['http.port']))
+    app.run(config['http.address'], int(config['http.port']), debug=False)
